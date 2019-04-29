@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class LoginController: UIViewController {
     
     let logo: UIImageView = {
@@ -23,7 +25,9 @@ class LoginController: UIViewController {
         let e = UITextField()
             e.placeholder = "Email"
             e.textColor = .white
-            e.backgroundColor = BLUE_THEME
+            e.clearButtonMode = .always
+            //e.clearButtonMode = .whileEditing
+            e.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return e
     }()
     
@@ -32,7 +36,8 @@ class LoginController: UIViewController {
             p.placeholder = "Password"
             p.textColor = .white
             p.isSecureTextEntry = true
-            p.backgroundColor = BLUE_THEME
+            p.clearButtonMode = .always
+            p.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return p
     }()
     
@@ -40,6 +45,8 @@ class LoginController: UIViewController {
         let l = UIButton(type: .system)
             l.setTitleColor(.white, for: .normal)
             l.setTitle("Log in", for: .normal)
+            l.layer.cornerRadius = 10
+        l.addTarget(self, action: #selector(loginMessage), for: .touchUpInside)
         l.backgroundColor = UIColor.rgb(r: 20, g: 240, b: 240)
         return l
     }()
@@ -62,18 +69,42 @@ class LoginController: UIViewController {
         return h
     }()
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
         view.backgroundColor = BLUE_THEME
+        
+        navigationController?.isNavigationBarHidden = true
+        
+        self.hideKeyboard()
         
         setupLogo()
         setupTextFieldComponents()
         setupLoginButton()
         setupForgotPassword()
         setupAccountButton()
+        
+        
     }
+    
+
+    
+
 
     fileprivate func setupTextFieldComponents() {
         setupEmailField()
@@ -117,7 +148,7 @@ class LoginController: UIViewController {
     fileprivate func setupLoginButton() {
         view.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20).isActive = true
         loginButton.leftAnchor.constraint(equalToSystemSpacingAfter: passwordTextField.leftAnchor, multiplier: 0).isActive = true
         loginButton.rightAnchor.constraint(equalToSystemSpacingAfter: passwordTextField.rightAnchor, multiplier: 0).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -146,7 +177,28 @@ class LoginController: UIViewController {
     }
     
     @objc func signupAction() {
+        let signupcontroller = SignupController()
+        navigationController?.pushViewController(signupcontroller, animated: true)
+    }
     
+    @IBAction func loginMessage() {
+        let alert = UIAlertController(title: "Error", message: "The textfield or textfields are empty", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let wrong_user = UIAlertController(title: "Wrong user", message: "The user is not recognized", preferredStyle: .alert)
+        
+        alert.addAction(action)
+        wrong_user.addAction(action)
+        
+        if(emailTextField.text?.isEmpty ?? true || passwordTextField.text?.isEmpty ?? true){
+            return present(alert,animated: true,completion: nil)
+        }else{
+            if(emailTextField.text?.elementsEqual("G") ?? true && passwordTextField.text?.elementsEqual("1234") ?? true){
+                let enrolledUser = EnrolledUser()
+                navigationController?.pushViewController(enrolledUser, animated: true)
+            }else{
+                return present(wrong_user,animated: true,completion: nil)
+            }
+        }
     }
 
 }

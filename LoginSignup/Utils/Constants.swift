@@ -6,4 +6,6 @@
 //  Copyright © 2019 Gerard Mata Carrera. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+let BLUE_THEME = UIColor(displayP3Red: 23 / 255, green: 201 / 255, blue: 200/255, alpha: 2)
