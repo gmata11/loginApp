@@ -13,6 +13,7 @@ class ForgotPassword: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = BLUE_THEME
     }
     
 }//ForgotPassword
