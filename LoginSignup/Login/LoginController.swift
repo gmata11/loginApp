@@ -55,6 +55,7 @@ class LoginController: UIViewController {
         let f = UIButton(type: .system)
             f.setTitle("Forgot Password?", for: .normal)
             f.setTitleColor(.white, for: .normal)
+        f.addTarget(self, action: #selector(forgotPassAction), for: .touchUpInside)
         return f
     }()
     
@@ -179,6 +180,11 @@ class LoginController: UIViewController {
     @objc func signupAction() {
         let signupcontroller = SignupController()
         navigationController?.pushViewController(signupcontroller, animated: true)
+    }
+    
+    @objc func forgotPassAction() {
+        let forgotPassController = ForgotPassword()
+        navigationController?.pushViewController(forgotPassController, animated: true)
     }
     
     @IBAction func loginMessage() {

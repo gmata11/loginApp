@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E0325AF2200D1C0008B09FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0325AE2200D1C0008B09FA /* GoogleService-Info.plist */; };
 		0E09392821FF83BE00FF4C66 /* EnrolledUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E09392721FF83BE00FF4C66 /* EnrolledUser.swift */; };
+		0E0CDB452279F03F0006740F /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0CDB442279F03F0006740F /* ForgotPassword.swift */; };
 		0E123ADD21FCC9F50099AE02 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E123ADC21FCC9F50099AE02 /* Extensions.swift */; };
 		0E123AE121FCD05E0099AE02 /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E123AE021FCD05E0099AE02 /* SignupController.swift */; };
 		0E3F76F321FDC6C100E1A2EE /* UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3F76F221FDC6C100E1A2EE /* UITesting.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		0E0325AE2200D1C0008B09FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E09392721FF83BE00FF4C66 /* EnrolledUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrolledUser.swift; sourceTree = "<group>"; };
+		0E0CDB442279F03F0006740F /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		0E123ADC21FCC9F50099AE02 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0E123AE021FCD05E0099AE02 /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		0E3F76F021FDC6C100E1A2EE /* UITesting.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITesting.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,14 @@
 				0E09392721FF83BE00FF4C66 /* EnrolledUser.swift */,
 			);
 			path = Enrolled;
+			sourceTree = "<group>";
+		};
+		0E0CDB432279F00F0006740F /* ForgotPass */ = {
+			isa = PBXGroup;
+			children = (
+				0E0CDB442279F03F0006740F /* ForgotPassword.swift */,
+			);
+			path = ForgotPass;
 			sourceTree = "<group>";
 		};
 		0E123ADE21FCD0020099AE02 /* SignUp */ = {
@@ -125,6 +135,7 @@
 		0E6D33B821FB8B010020FA8B /* LoginSignup */ = {
 			isa = PBXGroup;
 			children = (
+				0E0CDB432279F00F0006740F /* ForgotPass */,
 				0E09392621FF838F00FF4C66 /* Enrolled */,
 				0E123ADF21FCD0220099AE02 /* Login */,
 				0E123ADE21FCD0020099AE02 /* SignUp */,
@@ -332,6 +343,7 @@
 				0E09392821FF83BE00FF4C66 /* EnrolledUser.swift in Sources */,
 				0E123AE121FCD05E0099AE02 /* SignupController.swift in Sources */,
 				0E6D33BA21FB8B010020FA8B /* AppDelegate.swift in Sources */,
+				0E0CDB452279F03F0006740F /* ForgotPassword.swift in Sources */,
 				0E6D33CD21FB8F480020FA8B /* Constants.swift in Sources */,
 				0E123ADD21FCC9F50099AE02 /* Extensions.swift in Sources */,
 			);
