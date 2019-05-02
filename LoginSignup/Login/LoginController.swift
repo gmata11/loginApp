@@ -86,8 +86,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
+
         view.backgroundColor = BLUE_THEME
         
         navigationController?.isNavigationBarHidden = true
@@ -99,7 +98,11 @@ class LoginController: UIViewController {
         setupLoginButton()
         setupForgotPassword()
         setupAccountButton()
-        
+    }//end viewDidLoad
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
         
     }
     
@@ -188,9 +191,9 @@ class LoginController: UIViewController {
     }
     
     @IBAction func loginMessage() {
-        let alert = UIAlertController(title: "Error", message: "The textfield or textfields are empty", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "The textfield or textfields are empty. Please try it again.", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        let wrong_user = UIAlertController(title: "Wrong user", message: "The user is not recognized", preferredStyle: .alert)
+        let wrong_user = UIAlertController(title: "Wrong user", message: "The user is not recognized. Please try it again.", preferredStyle: .alert)
         
         alert.addAction(action)
         wrong_user.addAction(action)

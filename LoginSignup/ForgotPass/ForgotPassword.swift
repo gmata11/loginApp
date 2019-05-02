@@ -8,12 +8,18 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class ForgotPassword: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BLUE_THEME
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
     
 }//ForgotPassword

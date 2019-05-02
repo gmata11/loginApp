@@ -28,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controller = UINavigationController(rootViewController: loginController)
         window?.rootViewController = controller
         
+        //added
+        UINavigationBar.appearance().barTintColor = BLUE_THEME
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().shadowImage = UIImage()
+        //UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
         
         return true
     }

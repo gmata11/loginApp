@@ -65,6 +65,11 @@ class SignupController: UIViewController {
         setupHaveAccountButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     fileprivate func setupTextFieldComponentsRegister() {
         setupEmailFieldRegister()
         setupPasswordFieldRegister()
