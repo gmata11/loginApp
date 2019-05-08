@@ -12,6 +12,8 @@ import UIKit
 
 class LoginController: UIViewController {
     
+//    var user: String = ""
+    
     let logo: UIImageView = {
         let l = UIImageView()
             l.image = UIImage(named: "mata")
@@ -202,8 +204,10 @@ class LoginController: UIViewController {
             return present(alert,animated: true,completion: nil)
         }else{
             if(emailTextField.text?.elementsEqual("G") ?? true && passwordTextField.text?.elementsEqual("1234") ?? true){
+//                user = emailTextField.text!
                 let enrolledUser = EnrolledUser()
                 navigationController?.pushViewController(enrolledUser, animated: true)
+//                print(user)
             }else{
                 return present(wrong_user,animated: true,completion: nil)
             }

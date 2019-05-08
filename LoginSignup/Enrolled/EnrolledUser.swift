@@ -11,6 +11,11 @@ import SkeletonView
 
 class EnrolledUser:UIViewController {
     
+//    @IBOutlet var textUser: UILabel!
+//    var myCustomViewController: LoginController = LoginController(nibName: nil, bundle: nil)
+    
+    
+    
     let logOutButton: UIButton = {
         
         let h = UIButton(type: .system)
@@ -30,6 +35,8 @@ class EnrolledUser:UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BLUE_THEME
+//        textUser.text = myCustomViewController.user
+//        print (textUser)
         setupLogoutButton()
         setupLoadPage()
         view.showAnimatedSkeleton()
@@ -57,5 +64,7 @@ class EnrolledUser:UIViewController {
         loadPage.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
     }
+    
+    
     
 }//EndEnrolledUser

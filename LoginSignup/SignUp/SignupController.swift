@@ -12,6 +12,8 @@ import Firebase
 class SignupController: UIViewController {
     
     
+    
+    
     let emailTextFieldRegister: UITextField = {
         let e = UITextField()
         e.placeholder = "Email"
@@ -28,6 +30,35 @@ class SignupController: UIViewController {
         p.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return p
     }()
+    
+    let repeatPasswordTextFieldRegister: UITextField = {
+        let p = UITextField()
+        p.placeholder = "Repeat Password"
+        p.textColor = .white
+        p.isSecureTextEntry = true
+        p.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
+        return p
+    }()
+    
+    
+    
+    let dateTextFieldRegister: UITextField = {
+        
+        let datePickerTextfieldRegister : UIDatePicker = {
+            let d = UIDatePicker()
+            d.datePickerMode = .date
+            d.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+            return d
+        }()
+        
+        let d = UITextField()
+        d.placeholder = "Date"
+        d.textColor = .white
+        d.inputView = datePickerTextfieldRegister
+        d.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
+        return d
+    }()
+ 
     
     let registerButton: UIButton = {
         let l = UIButton(type: .system)
@@ -53,12 +84,15 @@ class SignupController: UIViewController {
     
     
     
+    
+    
     override func viewDidLoad() {
         
         let ref = Database.database().reference(fromURL: "https://mata-a3c06.firebaseio.com")
         ref.updateChildValues(["laia" : 123123])
         super.viewDidLoad()
         view.backgroundColor = BLUE_THEME
+        self.hideKeyboard()
         
         setupTextFieldComponentsRegister()
         setupRegisterButton()
@@ -70,15 +104,36 @@ class SignupController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
+    
+    @objc func dateChanged(datePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateTextFieldRegister.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    
     fileprivate func setupTextFieldComponentsRegister() {
         setupEmailFieldRegister()
         setupPasswordFieldRegister()
+        setupRepeatPasswordFieldRegister()
+        setupDateTextField()
     }
     
     @objc func signInAction(){
         navigationController?.popViewController(animated: true)
     }
     
+    
+    //Treure el teclat
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    //Treure el teclat
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     
     @objc func handleRegister(){
@@ -111,12 +166,31 @@ class SignupController: UIViewController {
         
     }
     
+    fileprivate func setupRepeatPasswordFieldRegister() {
+        view.addSubview(repeatPasswordTextFieldRegister)
+        repeatPasswordTextFieldRegister.translatesAutoresizingMaskIntoConstraints = false
+        repeatPasswordTextFieldRegister.topAnchor.constraint(equalTo: passwordTextFieldRegister.bottomAnchor, constant: 8).isActive = true
+        repeatPasswordTextFieldRegister.leftAnchor.constraint(equalTo: passwordTextFieldRegister.leftAnchor, constant: 0).isActive = true
+        repeatPasswordTextFieldRegister.rightAnchor.constraint(equalTo: passwordTextFieldRegister.rightAnchor, constant: 0).isActive = true
+        repeatPasswordTextFieldRegister.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+    }
+    
+    fileprivate func setupDateTextField(){
+        view.addSubview(dateTextFieldRegister)
+        dateTextFieldRegister.translatesAutoresizingMaskIntoConstraints = false
+        dateTextFieldRegister.topAnchor.constraint(equalTo: repeatPasswordTextFieldRegister.bottomAnchor, constant: 8).isActive = true
+        dateTextFieldRegister.leftAnchor.constraint(equalTo: repeatPasswordTextFieldRegister.leftAnchor, constant: 0).isActive = true
+        dateTextFieldRegister.rightAnchor.constraint(equalTo: repeatPasswordTextFieldRegister.rightAnchor, constant: 0).isActive = true
+        dateTextFieldRegister.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    }
+    
     fileprivate func setupRegisterButton() {
         view.addSubview(registerButton)
         registerButton.translatesAutoresizingMaskIntoConstraints = false
-        registerButton.topAnchor.constraint(equalTo: passwordTextFieldRegister.bottomAnchor, constant: 20).isActive = true
-        registerButton.leftAnchor.constraint(equalToSystemSpacingAfter: passwordTextFieldRegister.leftAnchor, multiplier: 0).isActive = true
-        registerButton.rightAnchor.constraint(equalToSystemSpacingAfter: passwordTextFieldRegister.rightAnchor, multiplier: 0).isActive = true
+        registerButton.topAnchor.constraint(equalTo: dateTextFieldRegister.bottomAnchor, constant: 30).isActive = true
+        registerButton.leftAnchor.constraint(equalToSystemSpacingAfter: dateTextFieldRegister.leftAnchor, multiplier: 0).isActive = true
+        registerButton.rightAnchor.constraint(equalToSystemSpacingAfter: dateTextFieldRegister.rightAnchor, multiplier: 0).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
