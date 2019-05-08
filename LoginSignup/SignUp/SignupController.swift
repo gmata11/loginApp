@@ -109,7 +109,6 @@ class SignupController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         dateTextFieldRegister.text = dateFormatter.string(from: datePicker.date)
-        view.endEditing(true)
     }
     
     fileprivate func setupTextFieldComponentsRegister() {
