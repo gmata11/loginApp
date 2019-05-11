@@ -196,7 +196,9 @@ class LoginController: UIViewController {
         let alert = UIAlertController(title: "Error", message: "The textfield or textfields are empty. Please try it again.", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         let wrong_user = UIAlertController(title: "Wrong user", message: "The user is not recognized. Please try it again.", preferredStyle: .alert)
-        
+        let welcome = UIAlertController(title: "Welcome", message: "Hi Gerard", preferredStyle: .alert)
+
+        welcome.addAction(action)
         alert.addAction(action)
         wrong_user.addAction(action)
         
@@ -205,8 +207,10 @@ class LoginController: UIViewController {
         }else{
             if(emailTextField.text?.elementsEqual("G") ?? true && passwordTextField.text?.elementsEqual("1234") ?? true){
 //                user = emailTextField.text!
+                
                 let enrolledUser = EnrolledUser()
                 navigationController?.pushViewController(enrolledUser, animated: true)
+                present(welcome,animated: true)
 //                print(user)
             }else{
                 return present(wrong_user,animated: true,completion: nil)
