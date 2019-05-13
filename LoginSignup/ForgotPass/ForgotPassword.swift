@@ -12,10 +12,24 @@ import WebKit
 
 class ForgotPassword: UIViewController {
     
+    let forgetPasswordTextView: UITextView = {
+        let f = UITextView()
+        f.textColor = .black
+        f.backgroundColor = UIColor.rgb(r: 20, g: 240, b: 240)
+        f.textAlignment = .center
+        f.layer.cornerRadius = 10
+        f.text = "Fill the fields to forget the password."
+        f.font = .systemFont(ofSize: 16)
+        f.sizeToFit()
+        f.isScrollEnabled = false
+        return f
+    }()
+    
     let emailTextFieldRegister: UITextField = {
         let e = UITextField()
         e.placeholder = "Email"
         e.textColor = .white
+        e.clearButtonMode = .always
         e.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return e
     }()
@@ -33,6 +47,7 @@ class ForgotPassword: UIViewController {
         let d = UITextField()
         d.placeholder = "Date"
         d.textColor = .white
+        d.clearButtonMode = .always
         d.inputView = datePickerTextfieldRegister
         d.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return d
@@ -51,6 +66,7 @@ class ForgotPassword: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BLUE_THEME
+        self.hideKeyboard()
         setupTextFieldComponentsRegister()
         setupRegisterButton()
     }
@@ -67,6 +83,7 @@ class ForgotPassword: UIViewController {
     }
     
     fileprivate func setupTextFieldComponentsRegister() {
+        setupForgetPasswordTextView()
         setupEmailFieldRegister()
         setupDateTextField()
     }
@@ -85,6 +102,14 @@ class ForgotPassword: UIViewController {
     //Treure el teclat
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    fileprivate func setupForgetPasswordTextView(){
+        view.addSubview(forgetPasswordTextView)
+        forgetPasswordTextView.translatesAutoresizingMaskIntoConstraints = false
+        forgetPasswordTextView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
+        forgetPasswordTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24).isActive = true
+        forgetPasswordTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24).isActive = true
     }
     
     

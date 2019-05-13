@@ -127,7 +127,7 @@ class LoginController: UIViewController {
         logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
         logo.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24).isActive = true
         logo.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24).isActive = true
-        logo.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        logo.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
     }
     

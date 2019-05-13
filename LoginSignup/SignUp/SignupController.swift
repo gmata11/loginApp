@@ -18,6 +18,7 @@ class SignupController: UIViewController {
         let e = UITextField()
         e.placeholder = "Email"
         e.textColor = .white
+        e.clearButtonMode = .always
         e.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return e
     }()
@@ -27,6 +28,7 @@ class SignupController: UIViewController {
         p.placeholder = "Password"
         p.textColor = .white
         p.isSecureTextEntry = true
+        p.clearButtonMode = .always
         p.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return p
     }()
@@ -36,6 +38,7 @@ class SignupController: UIViewController {
         p.placeholder = "Repeat Password"
         p.textColor = .white
         p.isSecureTextEntry = true
+        p.clearButtonMode = .always
         p.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return p
     }()
@@ -54,6 +57,7 @@ class SignupController: UIViewController {
         let d = UITextField()
         d.placeholder = "Date"
         d.textColor = .white
+        d.clearButtonMode = .always
         d.inputView = datePickerTextfieldRegister
         d.setBottomBorder(backGroundColor: BLUE_THEME, borderColor: .white)
         return d
