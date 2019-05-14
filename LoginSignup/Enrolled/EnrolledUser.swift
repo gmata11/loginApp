@@ -13,7 +13,7 @@ class EnrolledUser:UIViewController {
 //    @IBOutlet var textUser: UILabel!
 //    var myCustomViewController: LoginController = LoginController(nibName: nil, bundle: nil)
     
-    
+    // -- CREATING COMPONENTS -- 
     
     let logOutButton: UIButton = {
         
@@ -23,6 +23,8 @@ class EnrolledUser:UIViewController {
         h.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         return h
     }()
+    
+    // -- FINAL CREATING COMPONENTS --
     
     
     override func viewDidLoad() {
@@ -56,6 +58,8 @@ class EnrolledUser:UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
+    // -- ADDING COMPONENTS TO THE VIEW --
     
 //    fileprivate func setupLogoutButton(){
 //        view.addSubview(logOutButton)

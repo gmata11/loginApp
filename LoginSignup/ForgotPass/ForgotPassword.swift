@@ -12,6 +12,8 @@ import WebKit
 
 class ForgotPassword: UIViewController {
     
+    // -- CREATING COMPONENTS -- 
+    
     let forgetPasswordTextView: UITextView = {
         let f = UITextView()
         f.textColor = .black
@@ -37,13 +39,24 @@ class ForgotPassword: UIViewController {
 
     let dateTextFieldRegister: UITextField = {
         
+        //Adding minimum & maximum date for the date picker
+        let calendar = Calendar(identifier: .gregorian)
+        var comps = DateComponents()
+        comps.year = 0
+        let maxDate = calendar.date(byAdding: comps, to: Date())
+        comps.year = -90
+        let minDate = calendar.date(byAdding: comps, to: Date())
+        
         let datePickerTextfieldRegister : UIDatePicker = {
             let d = UIDatePicker()
             d.datePickerMode = .date
+            d.maximumDate = maxDate
+            d.minimumDate = minDate
             d.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
             return d
         }()
         
+        //Adding the dataPicker component to the the textField
         let d = UITextField()
         d.placeholder = "Date"
         d.textColor = .white
@@ -62,6 +75,8 @@ class ForgotPassword: UIViewController {
         l.backgroundColor = UIColor.rgb(r: 20, g: 240, b: 240)
         return l
     }()
+    
+    // -- FINAL CREATING COMPONENTS -- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,26 +97,30 @@ class ForgotPassword: UIViewController {
         dateTextFieldRegister.text = dateFormatter.string(from: datePicker.date)
     }
     
-    fileprivate func setupTextFieldComponentsRegister() {
-        setupForgetPasswordTextView()
-        setupEmailFieldRegister()
-        setupDateTextField()
-    }
     
     @objc func signInAction(){
         navigationController?.popViewController(animated: true)
     }
     
     
-    //Treure el teclat
+    // Dismiss the keyboard
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    //Treure el teclat
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    // Final Dismiss the keyboard
+    
+    // -- ADDING COMPONENTS TO THE VIEW --
+    
+    fileprivate func setupTextFieldComponentsRegister() {
+        setupForgetPasswordTextView()
+        setupEmailFieldRegister()
+        setupDateTextField()
     }
     
     fileprivate func setupForgetPasswordTextView(){
@@ -111,7 +130,6 @@ class ForgotPassword: UIViewController {
         forgetPasswordTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24).isActive = true
         forgetPasswordTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24).isActive = true
     }
-    
     
     
     fileprivate func setupEmailFieldRegister() {
@@ -142,5 +160,7 @@ class ForgotPassword: UIViewController {
         registerButton.rightAnchor.constraint(equalToSystemSpacingAfter: dateTextFieldRegister.rightAnchor, multiplier: 0).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
+    
+    // -- FINAL ADDING COMPONENTS TO THE VIEW --
     
 }//ForgotPassword

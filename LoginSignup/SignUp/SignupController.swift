@@ -12,7 +12,7 @@ import Firebase
 class SignupController: UIViewController {
     
     
-    
+    // -- CREATING COMPONENTS -- 
     
     let emailTextFieldRegister: UITextField = {
         let e = UITextField()
@@ -47,13 +47,24 @@ class SignupController: UIViewController {
     
     let dateTextFieldRegister: UITextField = {
         
+        //Adding minimum & maximum date for the date picker
+        let calendar = Calendar(identifier: .gregorian)
+        var comps = DateComponents()
+        comps.year = 0
+        let maxDate = calendar.date(byAdding: comps, to: Date())
+        comps.year = -90
+        let minDate = calendar.date(byAdding: comps, to: Date())
+        
         let datePickerTextfieldRegister : UIDatePicker = {
             let d = UIDatePicker()
             d.datePickerMode = .date
+            d.maximumDate = maxDate
+            d.minimumDate = minDate
             d.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
             return d
         }()
         
+        //Adding the dataPicker component to the the textField
         let d = UITextField()
         d.placeholder = "Date"
         d.textColor = .white
@@ -87,7 +98,7 @@ class SignupController: UIViewController {
     }()
     
     
-    
+    // -- FINAL CREATING COMPONENTS --
     
     
     override func viewDidLoad() {
@@ -115,12 +126,6 @@ class SignupController: UIViewController {
         dateTextFieldRegister.text = dateFormatter.string(from: datePicker.date)
     }
     
-    fileprivate func setupTextFieldComponentsRegister() {
-        setupEmailFieldRegister()
-        setupPasswordFieldRegister()
-        setupRepeatPasswordFieldRegister()
-        setupDateTextField()
-    }
     
     @objc func signInAction(){
         navigationController?.popViewController(animated: true)
@@ -147,6 +152,15 @@ class SignupController: UIViewController {
             }
             
         }
+    }
+    
+    // -- ADDING COMPONENTS TO THE VIEW --
+    
+    fileprivate func setupTextFieldComponentsRegister() {
+        setupEmailFieldRegister()
+        setupPasswordFieldRegister()
+        setupRepeatPasswordFieldRegister()
+        setupDateTextField()
     }
     
     fileprivate func setupEmailFieldRegister() {
@@ -205,4 +219,7 @@ class SignupController: UIViewController {
         haveAccountButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
         haveAccountButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
-}
+    
+    // -- FINAL ADDING COMPONENTS TO THE VIEW --
+    
+}//Final SignupController
