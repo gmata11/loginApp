@@ -19,8 +19,10 @@ class ForgotPassword: UIViewController {
         f.textColor = .black
         f.backgroundColor = UIColor.rgb(r: 20, g: 240, b: 240)
         f.textAlignment = .center
+        f.isEditable = false
+        f.isSelectable = false
         f.layer.cornerRadius = 10
-        f.text = "Fill the fields to forget the password."
+        f.text = "If you're here is because you forget the password. Fill the fields and click send to forget the password."
         f.font = .systemFont(ofSize: 16)
         f.sizeToFit()
         f.isScrollEnabled = false
@@ -80,6 +82,8 @@ class ForgotPassword: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Forgot Password"
+        navigationController?.navigationBar.barStyle = .black
         view.backgroundColor = BLUE_THEME
         self.hideKeyboard()
         setupTextFieldComponentsRegister()

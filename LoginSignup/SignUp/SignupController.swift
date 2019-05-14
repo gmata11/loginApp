@@ -12,7 +12,22 @@ import Firebase
 class SignupController: UIViewController {
     
     
-    // -- CREATING COMPONENTS -- 
+    // -- CREATING COMPONENTS --
+    
+    let signUpTextView: UITextView = {
+        let f = UITextView()
+        f.textColor = .black
+        f.backgroundColor = UIColor.rgb(r: 20, g: 240, b: 240)
+        f.textAlignment = .center
+        f.isEditable = false
+        f.isSelectable = false
+        f.layer.cornerRadius = 10
+        f.text = "Fill the fields and click send to register on our app."
+        f.font = .systemFont(ofSize: 16)
+        f.sizeToFit()
+        f.isScrollEnabled = false
+        return f
+    }()
     
     let emailTextFieldRegister: UITextField = {
         let e = UITextField()
@@ -106,6 +121,8 @@ class SignupController: UIViewController {
         let ref = Database.database().reference(fromURL: "https://mata-a3c06.firebaseio.com")
         ref.updateChildValues(["laia" : 123123])
         super.viewDidLoad()
+        navigationItem.title = "Sign Up"
+        navigationController?.navigationBar.barStyle = .black
         view.backgroundColor = BLUE_THEME
         self.hideKeyboard()
         
@@ -157,10 +174,19 @@ class SignupController: UIViewController {
     // -- ADDING COMPONENTS TO THE VIEW --
     
     fileprivate func setupTextFieldComponentsRegister() {
+        setupSignUpTextView()
         setupEmailFieldRegister()
         setupPasswordFieldRegister()
         setupRepeatPasswordFieldRegister()
         setupDateTextField()
+    }
+    
+    fileprivate func setupSignUpTextView(){
+        view.addSubview(signUpTextView)
+        signUpTextView.translatesAutoresizingMaskIntoConstraints = false
+        signUpTextView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
+        signUpTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24).isActive = true
+        signUpTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24).isActive = true
     }
     
     fileprivate func setupEmailFieldRegister() {
